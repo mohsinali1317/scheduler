@@ -22,6 +22,6 @@ from schedule.views import index, schedule
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('index/', index, name='index'),
+                  path('', index, name='index'),
                   path('schedule/', schedule, name='schedule'),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
