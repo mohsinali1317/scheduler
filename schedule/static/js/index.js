@@ -20,7 +20,7 @@ $(function () {
 
         var data ={start_date:startDate,end_date:endDate,exception_dates:exceptionDates};
 
-        $.post( "/index/",data, function( data ) {
+        $.post( "/",data, function( data ) {
             $( ".result" ).html( data );
             window.location.href = '/schedule/';
         });
