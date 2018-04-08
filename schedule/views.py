@@ -17,7 +17,7 @@ def index(request):
 
 
 def schedule(request):
-    schedule = Schedule.objects.all().all()
-    grounds = Ground.objects.all().all()
-    divs = Division.objects.all().all()
+    schedule = Schedule.objects.all().order_by('schedule_time')
+    grounds = Ground.objects.all()
+    divs = Division.objects.all()
     return render(request, 'schedule.html', {'schedules': schedule, 'grounds': grounds, 'divs': divs})
