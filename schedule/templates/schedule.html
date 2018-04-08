@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Scheduler</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/jquery-ui.multidatespicker.css' %}">
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-12">Total Number of Matches : {{ schedules |length }}</div>
+        <div class="col-sm-12">Divisions:
+            <ul>
+                {% for div in divs %}
+                    <li>
+                        {{ div.name }}
+                        <ul>
+                            {% for team in div.team_set.all %}
+                                <li>{{ team.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-sm-12">Grounds:
+            <ul>
+                {% for ground in grounds %}
+                    <li>{{ ground.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-12">
+            <table class="table responsive">
+                <thead>
+                <th>Division</th>
+                <th>Team One</th>
+                <th>Team Two</th>
+                <th>Ground</th>
+                <th>Schedule Time</th>
+                <th>Day</th>
+                </thead>
+                <tbody>
+
+                {% for schedule in schedules %}
+                    <tr>
+                        <td>{{ schedule.team2.division }}</td>
+                        <td>{{ schedule.team1 }}</td>
+                        <td>{{ schedule.team2 }}</td>
+                        <td>{{ schedule.ground }}</td>
+                        <td>{{ schedule.schedule_time }}</td>
+                        <td>{{ schedule.schedule_time|date:"l" }}</td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+
+</html>
